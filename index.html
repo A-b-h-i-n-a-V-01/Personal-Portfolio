@@ -539,43 +539,112 @@
     /* SKILLS */
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
     }
 
-    .skill-group {
+    .skill-card {
       background: var(--card);
       border: 1px solid var(--border);
-      padding: 24px;
+      padding: 32px 24px;
+      border-radius: 4px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
-    .skill-group-title {
+    .skill-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 4px;
+      border: 1px solid transparent;
+      background: linear-gradient(135deg, var(--accent), var(--accent2)) border-box;
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-4px);
+      border-color: transparent;
+      box-shadow: 0 12px 24px rgba(127, 255, 178, 0.04);
+    }
+
+    .skill-card:hover::after {
+      opacity: 1;
+    }
+
+    .skill-lang {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .skill-lang-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+
+    .skill-desc {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .skill-pill {
+      align-self: flex-start;
       font-size: 10px;
-      letter-spacing: 0.2em;
       text-transform: uppercase;
+      letter-spacing: 0.1em;
       color: var(--accent);
-      margin-bottom: 16px;
+      background: rgba(127, 255, 178, 0.04);
+      padding: 4px 10px;
+      border-radius: 2px;
+      border: 1px solid rgba(127, 255, 178, 0.1);
     }
 
     .skill-list {
       list-style: none;
       display: flex;
-      flex-direction: column;
-      gap: 8px;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
-    .skill-list li {
-      font-size: 13px;
-      color: var(--muted);
+    .skill-item {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      color: var(--text);
       display: flex;
       align-items: center;
       gap: 8px;
+      cursor: default;
     }
 
-    .skill-list li::before {
-      content: '—';
-      color: var(--border);
-      font-size: 10px;
+    .skill-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent2);
+      display: inline-block;
     }
 
     /* CONTACT */
@@ -726,7 +795,7 @@
       }
 
       .skills-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
       }
 
       .contact-inner {
@@ -760,10 +829,6 @@
         CS undergrad at SNGCE · Ernakulam, Kerala.<br>
         Building at the intersection of AI, full-stack dev, and real-world systems. Coding my way to a future in tech.
       </p>
-      <div class="hero-cta">
-        <a href="#projects" class="btn btn-primary">View Projects →</a>
-        <a href="#contact" class="btn btn-outline">Get in Touch</a>
-      </div>
       <div class="hero-scroll">
         <div class="scroll-line"></div>
         Scroll to explore
@@ -779,10 +844,11 @@
           <p>I'm <span>Abhinav Krishna C S</span>, a B.Tech Computer Science & Engineering student at Sree Narayana
             Gurukulam College of Engineering, affiliated with APJ Abdul Kalam Technological University.</p>
           <p>I have a strong interest in <span>exploring different programming languages and technologies</span>. I
-            believe technology can solve real-world problems — and I'm eager to gain experience working with others in
+            believe technology can solve real-world problems & I'm eager to gain experience working with others in
             the tech field.</p>
-          <p>My work spans <span>full-stack development, AI/ML systems, and cloud platforms</span>. From internships to
-            institution-level events, I'm always building something new.</p>
+          <p>My work spans <span>full-stack development, AI/ML systems, and cloud platforms</span>. From
+            Workshops,Internships to
+            Institution-level events, I'm always building something new.</p>
         </div>
       </div>
     </section>
@@ -853,8 +919,28 @@
     <!-- CERTIFICATIONS -->
     <section id="certifications">
       <div class="section-label">Credentials</div>
-      <h2 class="section-title">Licenses & Certifications</h2>
+      <h2 class="section-title">Certifications</h2>
       <div class="certs-grid">
+
+        <div class="cert-card">
+          <div class="cert-header">
+            <div class="cert-issuer">HackerRank</div>
+            <div class="cert-name">SQL (Intermediate)</div>
+          </div>
+          <div class="cert-footer">
+            <div class="cert-date">May 2026</div>
+            <a href="https://www.hackerrank.com/certificates/iframe/1d916b29b730" target="_blank" class="cert-btn">
+              Show credential
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
+
 
         <div class="cert-card">
           <div class="cert-header">
@@ -958,16 +1044,6 @@
 
         <div class="cert-card">
           <div class="cert-header">
-            <div class="cert-issuer">TECHMAGHI</div>
-            <div class="cert-name">Cyber Security and Ethical Hacking</div>
-          </div>
-          <div class="cert-footer">
-            <div class="cert-date">Nov 2023</div>
-          </div>
-        </div>
-
-        <div class="cert-card">
-          <div class="cert-header">
             <div class="cert-issuer">Ministry of Education, Govt. of India</div>
             <div class="cert-name">IDE Bootcamp Phase-III — Entrepreneurship & Design Thinking</div>
           </div>
@@ -988,11 +1064,11 @@
 
         <div class="cert-card">
           <div class="cert-header">
-            <div class="cert-issuer">Right Soft Options</div>
-            <div class="cert-name">Internship Training in Python Programming</div>
+            <div class="cert-issuer">TECHMAGHI</div>
+            <div class="cert-name">Cyber Security and Ethical Hacking</div>
           </div>
           <div class="cert-footer">
-            <div class="cert-date">Jul 2024</div>
+            <div class="cert-date">Nov 2023</div>
           </div>
         </div>
 
@@ -1001,44 +1077,71 @@
 
     <!-- SKILLS -->
     <section id="skills">
-      <div class="section-label">Tech stack</div>
-      <h2 class="section-title">Skills</h2>
+      <div class="section-label">Core languages</div>
+      <h2 class="section-title">Technical Expertise</h2>
       <div class="skills-grid">
-        <div class="skill-group">
-          <div class="skill-group-title">Languages</div>
-          <ul class="skill-list">
-            <li>Python</li>
-            <li>Dart (Flutter)</li>
-            <li>C / C++</li>
-            <li>HTML / CSS</li>
-          </ul>
+        <!-- Python -->
+        <div class="skill-card">
+          <span class="skill-pill">Scripting</span>
+          <h3 class="skill-lang"><span class="skill-lang-dot"></span>Python</h3>
+          <p class="skill-desc">Backend development, automation scripts, and general-purpose programming.</p>
         </div>
-        <div class="skill-group">
-          <div class="skill-group-title">Frameworks</div>
-          <ul class="skill-list">
-            <li>Flask</li>
-            <li>Flutter</li>
-            <li>Bootstrap</li>
-            <li>SQLAlchemy</li>
-          </ul>
+
+        <!-- Java -->
+        <div class="skill-card">
+          <span class="skill-pill">OOP</span>
+          <h3 class="skill-lang"><span class="skill-lang-dot"></span>Java</h3>
+          <p class="skill-desc">Object-oriented programming, data structures, and enterprise logic patterns.</p>
         </div>
-        <div class="skill-group">
-          <div class="skill-group-title">AI / Cloud</div>
-          <ul class="skill-list">
-            <li>Generative AI</li>
-            <li>LLM APIs</li>
-            <li>Microsoft Azure</li>
-            <li>AWS (Overview)</li>
-          </ul>
+
+        <!-- C/C++ -->
+        <div class="skill-card">
+          <span class="skill-pill">Systems</span>
+          <h3 class="skill-lang"><span class="skill-lang-dot"></span>C / C++</h3>
+          <p class="skill-desc">Low-level systems programming, algorithms, and memory management basics.</p>
         </div>
-        <div class="skill-group">
-          <div class="skill-group-title">Tools & DB</div>
-          <ul class="skill-list">
-            <li>MySQL</li>
-            <li>Firebase</li>
-            <li>Git / GitHub</li>
-            <li>Figma / UX</li>
-          </ul>
+
+        <!-- SQL -->
+        <div class="skill-card">
+          <span class="skill-pill">Database</span>
+          <h3 class="skill-lang"><span class="skill-lang-dot"></span>SQL</h3>
+          <p class="skill-desc">Relational database design, querying, data manipulation, and optimization.</p>
+        </div>
+
+        <!-- HTML & CSS -->
+        <div class="skill-card">
+          <span class="skill-pill">Web Core</span>
+          <h3 class="skill-lang"><span class="skill-lang-dot"></span>HTML / CSS</h3>
+          <p class="skill-desc">Responsive layouts, clean modern styling architecture, and premium user interfaces.</p>
+        </div>
+      </div>
+
+      <!-- Additional Tools & Concepts -->
+      <div
+        style="margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+        <div class="skill-group"
+          style="padding: 28px; background: var(--card); border: 1px solid var(--border); border-radius: 4px;">
+          <h3
+            style="font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px;">
+            Databases & Tools</h3>
+          <div class="skill-list">
+            <span class="skill-item"><span class="skill-dot"></span>MySQL</span>
+            <span class="skill-item"><span class="skill-dot"></span>Git & GitHub</span>
+            <span class="skill-item"><span class="skill-dot"></span>VS Code</span>
+            <span class="skill-item"><span class="skill-dot"></span>Linux / Command Line</span>
+          </div>
+        </div>
+
+        <div class="skill-group"
+          style="padding: 28px; background: var(--card); border: 1px solid var(--border); border-radius: 4px;">
+          <h3
+            style="font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px;">
+            Concepts & Fundamentals</h3>
+          <div class="skill-list">
+            <span class="skill-item"><span class="skill-dot"></span>Object-Oriented Programming (OOP)</span>
+            <span class="skill-item"><span class="skill-dot"></span>Data Structures & Algorithms (DSA)</span>
+            <span class="skill-item"><span class="skill-dot"></span>Cyber Security Fundamentals</span>
+          </div>
         </div>
       </div>
     </section>
@@ -1057,11 +1160,12 @@
             LinkedIn
             <span class="contact-link-arrow">↗</span>
           </a>
-          <a href="mailto:abhinavkrishna@example.com" class="contact-link">
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=abhinavkrishnacs01@gmail.com" target="_blank"
+            class="contact-link">
             Email Me
             <span class="contact-link-arrow">↗</span>
           </a>
-          <a href="https://github.com" target="_blank" class="contact-link">
+          <a href="https://github.com/A-b-h-i-n-a-V-01" target="_blank" class="contact-link">
             GitHub
             <span class="contact-link-arrow">↗</span>
           </a>
