@@ -2,7 +2,7 @@
 
 Welcome to the repository for my personal portfolio website. This is a minimal, developer-centric, premium dark-themed portfolio designed to showcase my journey as a Computer Science undergrad, software developer, AI/ML enthusiast, and cybersecurity practitioner.
 
-🔗 **Live Link:** [https://a-b-h-i-n-a-v-01.github.io/portfolio](https://a-b-h-i-n-a-v-01.github.io/portfolio) *(Update with your actual GitHub Pages deployment URL)*
+🔗 **Live Link:** [https://a-b-h-i-n-a-v-01.github.io/portfolio](a-b-h-i-n-a-v-01.github.io/Portfolio/)
 
 ---
 
