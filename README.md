@@ -54,4 +54,3 @@ The portfolio features a curated, dark-themed cyber grid aesthetic designed to s
 *   **GitHub:** [@A-b-h-i-n-a-V-01](https://github.com/A-b-h-i-n-a-V-01)
 
 ---
-*Developed with intent by Abhinav Krishna C S.*
