@@ -537,47 +537,44 @@
     }
 
     /* SKILLS */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-    }
-
-    .skill-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      padding: 32px 24px;
-      border-radius: 4px;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
+    .skills-rows {
       display: flex;
       flex-direction: column;
-      gap: 12px;
     }
 
-    .skill-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 4px;
-      border: 1px solid transparent;
-      background: linear-gradient(135deg, var(--accent), var(--accent2)) border-box;
-      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
+    .skill-row {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 40px;
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+      transition: all 0.2s ease;
     }
 
-    .skill-card:hover {
-      transform: translateY(-4px);
-      border-color: transparent;
-      box-shadow: 0 12px 24px rgba(127, 255, 178, 0.04);
+    .skill-row:last-child {
+      border-bottom: 1px solid var(--border);
     }
 
-    .skill-card:hover::after {
-      opacity: 1;
+    .skill-row-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .skill-row-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--accent);
+      letter-spacing: -0.01em;
+    }
+
+    .skill-row-desc {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 16px;
+      font-size: 13px;
     }
 
     .skill-lang {
@@ -794,8 +791,10 @@
         grid-template-columns: 1fr;
       }
 
-      .skills-grid {
+      .skill-row {
         grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 24px 0;
       }
 
       .contact-inner {
@@ -1077,70 +1076,118 @@
 
     <!-- SKILLS -->
     <section id="skills">
-      <div class="section-label">Core languages</div>
+      <div class="section-label">Technical skills</div>
       <h2 class="section-title">Technical Expertise</h2>
-      <div class="skills-grid">
-        <!-- Python -->
-        <div class="skill-card">
-          <span class="skill-pill">Scripting</span>
-          <h3 class="skill-lang"><span class="skill-lang-dot"></span>Python</h3>
-          <p class="skill-desc">Backend development, automation scripts, and general-purpose programming.</p>
-        </div>
-
-        <!-- Java -->
-        <div class="skill-card">
-          <span class="skill-pill">OOP</span>
-          <h3 class="skill-lang"><span class="skill-lang-dot"></span>Java</h3>
-          <p class="skill-desc">Object-oriented programming, data structures, and enterprise logic patterns.</p>
-        </div>
-
-        <!-- C/C++ -->
-        <div class="skill-card">
-          <span class="skill-pill">Systems</span>
-          <h3 class="skill-lang"><span class="skill-lang-dot"></span>C / C++</h3>
-          <p class="skill-desc">Low-level systems programming, algorithms, and memory management basics.</p>
-        </div>
-
-        <!-- SQL -->
-        <div class="skill-card">
-          <span class="skill-pill">Database</span>
-          <h3 class="skill-lang"><span class="skill-lang-dot"></span>SQL</h3>
-          <p class="skill-desc">Relational database design, querying, data manipulation, and optimization.</p>
-        </div>
-
-        <!-- HTML & CSS -->
-        <div class="skill-card">
-          <span class="skill-pill">Web Core</span>
-          <h3 class="skill-lang"><span class="skill-lang-dot"></span>HTML / CSS</h3>
-          <p class="skill-desc">Responsive layouts, clean modern styling architecture, and premium user interfaces.</p>
-        </div>
-      </div>
-
-      <!-- Additional Tools & Concepts -->
-      <div
-        style="margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
-        <div class="skill-group"
-          style="padding: 28px; background: var(--card); border: 1px solid var(--border); border-radius: 4px;">
-          <h3
-            style="font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px;">
-            Databases & Tools</h3>
-          <div class="skill-list">
-            <span class="skill-item"><span class="skill-dot"></span>MySQL</span>
-            <span class="skill-item"><span class="skill-dot"></span>Git & GitHub</span>
-            <span class="skill-item"><span class="skill-dot"></span>VS Code</span>
-            <span class="skill-item"><span class="skill-dot"></span>Linux / Command Line</span>
+      <div class="skills-rows">
+        <!-- Software Engineering -->
+        <div class="skill-row">
+          <div class="skill-row-meta">
+            <span class="skill-pill">Backend & Systems</span>
+            <h3 class="skill-row-title">Software Dev</h3>
+          </div>
+          <div>
+            <p class="skill-row-desc">Building robust backend logic, enterprise applications, and system utilities.</p>
+            <div class="skill-list">
+              <span class="skill-item"><span class="skill-dot"></span>Python</span>
+              <span class="skill-item"><span class="skill-dot"></span>Java</span>
+              <span class="skill-item"><span class="skill-dot"></span>C / C++</span>
+            </div>
           </div>
         </div>
 
-        <div class="skill-group"
-          style="padding: 28px; background: var(--card); border: 1px solid var(--border); border-radius: 4px;">
-          <h3
-            style="font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px;">
+        <!-- Web & Frontend -->
+        <div class="skill-row">
+          <div class="skill-row-meta">
+            <span class="skill-pill">Web Core</span>
+            <h3 class="skill-row-title">Frontend Dev</h3>
+          </div>
+          <div>
+            <p class="skill-row-desc">Creating responsive layouts, clean styling architectures, and interactive user interfaces.</p>
+            <div class="skill-list">
+              <span class="skill-item"><span class="skill-dot"></span>HTML5 / CSS3</span>
+              <span class="skill-item"><span class="skill-dot"></span>TailwindCSS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data Science & ML -->
+        <div class="skill-row">
+          <div class="skill-row-meta">
+            <span class="skill-pill">AI & Analytics</span>
+            <h3 class="skill-row-title">Data Science / ML</h3>
+          </div>
+          <div>
+            <p class="skill-row-desc">Analyzing data, training models, and building intelligent systems using Generative AI & Large Language Models (LLMs).</p>
+            <div class="skill-list">
+              <span class="skill-item"><span class="skill-dot"></span>NumPy / Pandas</span>
+              <span class="skill-item"><span class="skill-dot"></span>scikit-learn</span>
+              <span class="skill-item"><span class="skill-dot"></span>Matplotlib / Plotly</span>
+              <span class="skill-item"><span class="skill-dot"></span>Generative AI / LLMs</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Databases -->
+        <div class="skill-row">
+          <div class="skill-row-meta">
+            <span class="skill-pill">Database</span>
+            <h3 class="skill-row-title">Databases & SQL</h3>
+          </div>
+          <div>
+            <p class="skill-row-desc">Relational database design, structuring collections, and writing highly optimized queries.</p>
+            <div class="skill-list">
+              <span class="skill-item"><span class="skill-dot"></span>SQL</span>
+              <span class="skill-item"><span class="skill-dot"></span>MySQL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cloud & Deployment -->
+        <div class="skill-row">
+          <div class="skill-row-meta">
+            <span class="skill-pill">DevOps & Hosting</span>
+            <h3 class="skill-row-title">Tools & Platforms</h3>
+          </div>
+          <div>
+            <p class="skill-row-desc">Deploying scalable projects, building interactive app prototypes, and version control workflows.</p>
+            <div class="skill-list">
+              <span class="skill-item"><span class="skill-dot"></span>Git & GitHub</span>
+              <span class="skill-item"><span class="skill-dot"></span>Streamlit</span>
+              <span class="skill-item"><span class="skill-dot"></span>Vercel / Render</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Creative & Design -->
+        <div class="skill-row">
+          <div class="skill-row-meta">
+            <span class="skill-pill">Creative</span>
+            <h3 class="skill-row-title">Design & Editing</h3>
+          </div>
+          <div>
+            <p class="skill-row-desc">Developing modern layouts, mockups, color grading, and assets for brand representation.</p>
+            <div class="skill-list">
+              <span class="skill-item"><span class="skill-dot"></span>Canva</span>
+              <span class="skill-item"><span class="skill-dot"></span>Adobe Lightroom</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Concepts & Fundamentals -->
+      <div style="margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
+        <div class="skill-group" style="padding: 28px; background: var(--card); border: 1px solid var(--border); border-radius: 4px; grid-column: 1 / -1;">
+          <h3 style="font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px;">
             Concepts & Fundamentals</h3>
           <div class="skill-list">
             <span class="skill-item"><span class="skill-dot"></span>Object-Oriented Programming (OOP)</span>
             <span class="skill-item"><span class="skill-dot"></span>Data Structures & Algorithms (DSA)</span>
+            <span class="skill-item"><span class="skill-dot"></span>Machine Learning & Predictive Modeling</span>
+            <span class="skill-item"><span class="skill-dot"></span>Regression & Classification (Linear / Logistic)</span>
             <span class="skill-item"><span class="skill-dot"></span>Cyber Security Fundamentals</span>
+            <span class="skill-item"><span class="skill-dot"></span>Google Colab</span>
+            <span class="skill-item"><span class="skill-dot"></span>VS Code</span>
+            <span class="skill-item"><span class="skill-dot"></span>Linux / Command Line</span>
           </div>
         </div>
       </div>
