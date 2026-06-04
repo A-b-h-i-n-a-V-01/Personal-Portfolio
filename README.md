@@ -15,7 +15,7 @@ The portfolio features a curated, dark-themed cyber grid aesthetic designed to s
 
 ## 💻 Tech Stack & Features
 *   **Frontend Core:** Vanilla HTML5, semantic structure, custom CSS3 variables, and grid layouts. No bulky libraries or frameworks—built for maximum speed and optimization.
-*   **Responsive Layout:** Fully optimized for mobile, tablet, and desktop screens with HSL tailored variables.
+*   **Responsive Layout:** Fully optimized for mobile, tablet, and desktop screens.
 *   **Fully Accessible:** Built using semantic HTML5 tags (`<nav>`, `<section>`, `<footer>`) and optimized for search engine indexing.
 
 ---
