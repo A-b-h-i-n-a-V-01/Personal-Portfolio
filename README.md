@@ -2,7 +2,7 @@
 
 Welcome to the repository for my personal portfolio website. This is a minimal, developer-centric, premium dark-themed portfolio designed to showcase my journey as a Computer Science undergrad, software developer, AI/ML enthusiast, and cybersecurity practitioner.
 
-🔗 **Live Link:** [https://a-b-h-i-n-a-v-01.github.io/portfolio](https://a-b-h-i-n-a-v-01.github.io/portfolio) *(Update with your actual GitHub Pages deployment URL)*
+🔗 **Live Link:** [https://a-b-h-i-n-a-v-01.github.io/Portfolio/](https://a-b-h-i-n-a-v-01.github.io/Portfolio/)
 
 ---
 
@@ -15,7 +15,7 @@ The portfolio features a curated, dark-themed cyber grid aesthetic designed to s
 
 ## 💻 Tech Stack & Features
 *   **Frontend Core:** Vanilla HTML5, semantic structure, custom CSS3 variables, and grid layouts. No bulky libraries or frameworks—built for maximum speed and optimization.
-*   **Responsive Layout:** Fully optimized for mobile, tablet, and desktop screens with HSL tailored variables.
+*   **Responsive Layout:** Fully optimized for mobile, tablet, and desktop screens.
 *   **Fully Accessible:** Built using semantic HTML5 tags (`<nav>`, `<section>`, `<footer>`) and optimized for search engine indexing.
 
 ---
@@ -54,4 +54,3 @@ The portfolio features a curated, dark-themed cyber grid aesthetic designed to s
 *   **GitHub:** [@A-b-h-i-n-a-V-01](https://github.com/A-b-h-i-n-a-V-01)
 
 ---
-*Developed with intent by Abhinav Krishna C S.*
