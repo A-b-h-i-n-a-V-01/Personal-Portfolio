@@ -49,7 +49,7 @@ The portfolio features a curated, dark-themed cyber grid aesthetic designed to s
 ---
 
 ## 📬 Connect with Me
-*   **LinkedIn:** [abhinav-krishna-c-s-820717291](https://www.linkedin.com/in/abhinav-krishna-c-s-820717291)
+*   **LinkedIn:** [abhinav-krishna-c-s007](https://www.linkedin.com/in/abhinav-krishna-c-s-820717291)
 *   **Email:** [abhinavkrishnacs01@gmail.com](mailto:abhinavkrishnacs01@gmail.com)
 *   **GitHub:** [@A-b-h-i-n-a-V-01](https://github.com/A-b-h-i-n-a-V-01)
 
