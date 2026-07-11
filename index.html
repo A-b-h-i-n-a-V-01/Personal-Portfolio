@@ -70,12 +70,12 @@
       justify-content: space-between;
       align-items: center;
       padding: 16px 36px;
-      background: rgba(255, 255, 255, 0.45);
-      backdrop-filter: blur(24px) saturate(180%);
-      -webkit-backdrop-filter: blur(24px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, 0.4);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.15) 49.5%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.15) 100%);
+      backdrop-filter: blur(20px) saturate(190%);
+      -webkit-backdrop-filter: blur(20px) saturate(190%);
+      border: 1px solid rgba(255, 255, 255, 0.45);
       border-radius: 100px;
-      box-shadow: 0 10px 30px rgba(31, 41, 55, 0.04), 0 1px 0 rgba(255, 255, 255, 0.25) inset;
+      box-shadow: 0 10px 30px rgba(31, 41, 55, 0.03), 0 1.5px 0 rgba(255, 255, 255, 0.55) inset, 0 -1px 0 rgba(0, 0, 0, 0.01) inset;
     }
 
     .nav-logo {
@@ -640,7 +640,7 @@
       align-items: center;
       gap: 6px;
       padding: 7px 14px;
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 30px;
       font-size: 11px;
       font-weight: 600;
@@ -671,7 +671,6 @@
     .cert-btn:hover svg {
       transform: translate(2px, -2px);
       stroke: #FFFFFF;
-    }
     }
 
     /* SKILLS */
@@ -1030,6 +1029,7 @@
       .hero-pfp-container {
         order: -1;
         margin-bottom: 20px;
+        justify-content: center;
       }
 
       .pfp-wrapper {
@@ -1130,11 +1130,33 @@
     <div class="hero">
       <div class="hero-content">
         <div class="hero-tag"><span class="hero-tag-dot"></span>Available for opportunities</div>
-        <h1>Abhinav<br>Krishna C S</h1>
+        <h1>Abhinav<br><span style="color: var(--accent);">Krishna&nbsp;C&nbsp;S</span></h1>
         <p class="hero-desc">
           CS undergrad at SNGCE · Ernakulam, Kerala.<br>
           Building at the intersection of AI, full-stack dev, and real-world systems. Coding my way to a future in tech.
         </p>
+        <div class="hero-cta" style="margin-bottom: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#certifications" class="btn btn-outline">Certificates</a>
+          <a href="#contact" class="btn btn-outline">Email Me</a>
+        </div>
+        <div class="hero-socials" style="display: flex; align-items: center; gap: 16px; font-size: 13px; color: var(--muted); margin-bottom: 48px;">
+          <a href="https://github.com/A-b-h-i-n-a-V-01" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; color: var(--text-2); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-2)'">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+            github.com/A-b-h-i-n-a-V-01
+          </a>
+          <span style="color: var(--border);">|</span>
+          <a href="https://www.linkedin.com/in/abhinav-krishna-c-s007/" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; color: var(--text-2); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-2)'">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+            LinkedIn
+          </a>
+        </div>
         <div class="hero-scroll">
           <div class="scroll-line"></div>
           Scroll to explore
