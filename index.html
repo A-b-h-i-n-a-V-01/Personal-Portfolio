@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Abhinav Krishna C S — Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Instrument+Serif:ital@0;1&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap"
     rel="stylesheet">
   <style>
     *,
@@ -19,14 +20,17 @@
     }
 
     :root {
-      --bg: #0a0a0f;
-      --surface: #111118;
-      --border: #1e1e2e;
-      --accent: #7fffb2;
-      --accent2: #5b8fff;
-      --text: #e8e8f0;
-      --muted: #5a5a7a;
-      --card: #13131e;
+      --bg: #F3F4F6;
+      --surface: #FFFFFF;
+      --border: #E5E7EB;
+      --accent: #10B981;
+      --accent2: #06B6D4;
+      --text: #1F2937;
+      --text-2: #4B5563;
+      --muted: #9CA3AF;
+      --card: #FFFFFF;
+      --card-hover: #F9FAFB;
+      --tag-bg: #F3F4F6;
     }
 
     html {
@@ -34,79 +38,75 @@
     }
 
     body {
-      background: var(--bg);
+      background: radial-gradient(circle at 10% 20%, #F9FAFB 0%, #F3F4F6 90%);
       color: var(--text);
-      font-family: 'DM Mono', monospace;
-      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
       line-height: 1.7;
       overflow-x: hidden;
+      position: relative;
     }
 
-    /* Noise overlay */
     body::before {
-      content: '';
+      content: "";
       position: fixed;
       inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      width: 100%;
+      height: 100%;
+      z-index: 999;
       pointer-events: none;
-      z-index: 9999;
-      opacity: 0.4;
-    }
-
-    /* Grid bg */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
-      background-size: 60px 60px;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.3;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
     /* NAV */
     nav {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 16px;
+      left: 24px;
+      right: 24px;
       z-index: 100;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 48px;
-      backdrop-filter: blur(16px);
-      background: rgba(10, 10, 15, 0.8);
-      border-bottom: 1px solid var(--border);
+      padding: 16px 36px;
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 100px;
+      box-shadow: 0 10px 30px rgba(31, 41, 55, 0.04), 0 1px 0 rgba(255, 255, 255, 0.25) inset;
     }
 
     .nav-logo {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
-      font-size: 16px;
-      letter-spacing: 0.1em;
-      color: var(--accent);
+      font-size: 18px;
+      letter-spacing: -0.01em;
+      color: var(--text);
       text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--accent);
     }
 
     .nav-links {
       display: flex;
-      gap: 32px;
+      gap: 36px;
       list-style: none;
     }
 
     .nav-links a {
-      color: var(--muted);
+      color: var(--text-2);
       text-decoration: none;
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      font-size: 14px;
+      font-weight: 500;
       transition: color 0.2s;
     }
 
     .nav-links a:hover {
-      color: var(--accent);
+      color: var(--text);
     }
 
     /* HERO */
@@ -114,60 +114,138 @@
       position: relative;
       z-index: 1;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+      gap: 64px;
       padding: 120px 48px 80px;
       max-width: 1200px;
       margin: 0 auto;
     }
 
-    .hero-tag {
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 24px;
+    .hero-content {
       display: flex;
-      align-items: center;
-      gap: 12px;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .hero-tag::before {
-      content: '';
-      display: inline-block;
-      width: 32px;
-      height: 1px;
+    .hero-pfp-container {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      position: relative;
+      animation: fadeUp 0.8s 0.2s ease forwards;
+      opacity: 0;
+    }
+
+    .pfp-wrapper {
+      position: relative;
+      width: clamp(200px, 25vw, 320px);
+      height: clamp(200px, 25vw, 320px);
+      border-radius: 50%;
+      padding: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 50px rgba(24, 24, 26, 0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .pfp-wrapper:hover {
+      transform: translateY(-4px) scale(1.02);
+    }
+
+    .pfp-image {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: 65% 5%;
+      display: block;
+      background: #FAF8F5;
+    }
+
+    .pfp-ring {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 1.5px dashed var(--accent);
+      opacity: 0.4;
+      animation: rotateRing 20s linear infinite;
+    }
+
+    @keyframes rotateRing {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .hero-tag {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+    }
+
+    .hero-tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
       background: var(--accent);
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.35;
+        transform: scale(0.75);
+      }
     }
 
     .hero h1 {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
-      font-size: clamp(48px, 8vw, 96px);
-      line-height: 0.95;
-      letter-spacing: -0.02em;
-      margin-bottom: 32px;
+      font-size: clamp(52px, 8.5vw, 100px);
+      line-height: 0.93;
+      letter-spacing: -0.03em;
+      margin-bottom: 36px;
+      color: var(--text);
     }
 
     .hero h1 em {
       font-family: 'Instrument Serif', serif;
       font-style: italic;
-      color: var(--accent);
       font-weight: 400;
+      color: var(--accent);
     }
 
     .hero-desc {
-      max-width: 520px;
-      color: var(--muted);
-      font-size: 14px;
+      max-width: 500px;
+      color: var(--text-2);
+      font-size: 16px;
       line-height: 1.8;
       margin-bottom: 48px;
     }
 
     .hero-cta {
       display: flex;
-      gap: 16px;
+      gap: 12px;
       flex-wrap: wrap;
     }
 
@@ -175,39 +253,38 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 12px 28px;
-      border-radius: 2px;
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      padding: 13px 28px;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
       text-decoration: none;
-      transition: all 0.2s;
+      transition: all 0.2s ease;
       cursor: pointer;
       border: none;
     }
 
     .btn-primary {
-      background: var(--accent);
-      color: #000;
-      font-weight: 500;
+      background: var(--text);
+      color: var(--bg);
     }
 
     .btn-primary:hover {
-      background: #a0ffcc;
+      background: #2c2a28;
       transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(24, 24, 26, 0.22);
     }
 
     .btn-outline {
       background: transparent;
       color: var(--text);
-      border: 1px solid var(--border);
+      border: 1.5px solid var(--border);
     }
 
     .btn-outline:hover {
-      border-color: var(--accent);
-      color: var(--accent);
+      border-color: var(--text-2);
       transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
     }
 
     .hero-scroll {
@@ -218,28 +295,28 @@
       align-items: center;
       gap: 12px;
       font-size: 11px;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted);
     }
 
     .scroll-line {
-      width: 48px;
+      width: 40px;
       height: 1px;
-      background: var(--muted);
-      animation: scrollPulse 2s ease-in-out infinite;
+      background: var(--border);
+      animation: scrollPulse 2.2s ease-in-out infinite;
     }
 
     @keyframes scrollPulse {
 
       0%,
       100% {
-        width: 48px;
+        width: 40px;
         opacity: 0.5;
       }
 
       50% {
-        width: 72px;
+        width: 68px;
         opacity: 1;
       }
     }
@@ -255,55 +332,59 @@
 
     .section-label {
       font-size: 11px;
-      letter-spacing: 0.2em;
+      font-weight: 700;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
     .section-label::before {
       content: '';
       display: inline-block;
-      width: 24px;
-      height: 1px;
+      width: 18px;
+      height: 2px;
       background: var(--accent);
+      border-radius: 2px;
     }
 
     .section-title {
       font-family: 'Syne', sans-serif;
       font-weight: 700;
-      font-size: clamp(28px, 4vw, 48px);
-      letter-spacing: -0.02em;
-      margin-bottom: 56px;
+      font-size: clamp(28px, 4vw, 46px);
+      letter-spacing: -0.025em;
+      margin-bottom: 52px;
       line-height: 1.1;
+      color: var(--text);
     }
 
     /* ABOUT */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr;
-      max-width: 800px;
+      max-width: 720px;
       gap: 32px;
     }
 
     .about-text p {
-      color: var(--muted);
+      color: var(--text-2);
       margin-bottom: 20px;
       line-height: 1.9;
-      font-size: 15px;
+      font-size: 16px;
     }
 
     .about-text p span {
       color: var(--text);
+      font-weight: 600;
     }
 
     /* EXPERIENCE */
     .exp-item {
       display: grid;
-      grid-template-columns: 200px 1fr;
+      grid-template-columns: 190px 1fr;
       gap: 40px;
       padding: 40px 0;
       border-top: 1px solid var(--border);
@@ -318,31 +399,34 @@
     }
 
     .exp-date {
-      font-size: 11px;
-      letter-spacing: 0.1em;
+      font-size: 12px;
+      font-weight: 500;
       color: var(--muted);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .exp-company {
-      font-family: 'Syne', sans-serif;
       font-weight: 700;
-      font-size: 13px;
+      font-size: 11px;
       color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
     }
 
     .exp-role {
       font-family: 'Syne', sans-serif;
       font-weight: 700;
       font-size: 20px;
-      margin-bottom: 16px;
-      letter-spacing: -0.01em;
+      margin-bottom: 14px;
+      letter-spacing: -0.015em;
+      color: var(--text);
     }
 
     .exp-desc {
-      color: var(--muted);
-      line-height: 1.8;
+      color: var(--text-2);
+      line-height: 1.85;
       margin-bottom: 20px;
+      font-size: 15px;
     }
 
     .tags {
@@ -352,12 +436,13 @@
     }
 
     .tag {
-      padding: 4px 12px;
+      padding: 5px 13px;
+      background: var(--tag-bg);
       border: 1px solid var(--border);
-      font-size: 11px;
-      letter-spacing: 0.05em;
-      color: var(--muted);
-      border-radius: 2px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-2);
+      border-radius: 100px;
     }
 
     /* PROJECTS */
@@ -366,18 +451,26 @@
       grid-template-columns: 1fr;
       max-width: 800px;
       margin: 0 auto;
+      border-radius: 16px;
+      overflow: hidden;
       border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05), 0 20px 48px rgba(0, 0, 0, 0.06);
     }
 
     .project-card {
       background: var(--card);
       padding: 40px;
-      transition: background 0.2s;
+      transition: background 0.25s ease;
       position: relative;
       overflow: hidden;
       display: block;
       text-decoration: none;
       color: inherit;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-card:last-child {
+      border-bottom: none;
     }
 
     .project-card::before {
@@ -386,15 +479,15 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 2px;
+      height: 3px;
       background: linear-gradient(90deg, var(--accent), var(--accent2));
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform 0.3s;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .project-card:hover {
-      background: #161622;
+      background: var(--card-hover);
     }
 
     .project-card:hover::before {
@@ -403,16 +496,18 @@
 
     .project-num {
       font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 0.15em;
-      margin-bottom: 20px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
     }
 
     .project-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       gap: 20px;
     }
 
@@ -420,22 +515,28 @@
       font-family: 'Syne', sans-serif;
       font-weight: 700;
       font-size: 22px;
-      letter-spacing: -0.01em;
-      margin-bottom: 0;
+      letter-spacing: -0.015em;
+      color: var(--text);
     }
 
     .project-link-icon {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 5px;
       color: var(--muted);
-      transition: color 0.2s, transform 0.2s;
+      transition: color 0.2s, background 0.2s, border-color 0.2s;
       flex-shrink: 0;
       margin-top: 4px;
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      padding: 7px 11px;
+      border-radius: 8px;
     }
 
     .project-card:hover .project-link-icon {
       color: var(--accent);
+      border-color: rgba(16, 185, 129, 0.3);
+      background: rgba(16, 185, 129, 0.06);
     }
 
     .project-card:hover .project-link-icon .external-arrow {
@@ -447,8 +548,8 @@
     }
 
     .project-desc {
-      color: var(--muted);
-      font-size: 13px;
+      color: var(--text-2);
+      font-size: 15px;
       line-height: 1.8;
       margin-bottom: 24px;
     }
@@ -457,28 +558,29 @@
     .certs-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 14px;
     }
 
     .cert-card {
       background: var(--card);
       border: 1px solid var(--border);
-      padding: 28px 24px 24px;
-      border-radius: 4px;
+      padding: 22px 20px 18px;
+      border-radius: 12px;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-height: 180px;
+      min-height: 160px;
       position: relative;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
     }
 
     .cert-card::after {
       content: '';
       position: absolute;
       inset: 0;
-      border-radius: 4px;
-      border: 1px solid transparent;
+      border-radius: 12px;
+      border: 1.5px solid transparent;
       background: linear-gradient(135deg, var(--accent), var(--accent2)) border-box;
       -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
@@ -491,7 +593,7 @@
     .cert-card:hover {
       border-color: transparent;
       transform: translateY(-4px);
-      box-shadow: 0 12px 24px rgba(127, 255, 178, 0.04);
+      box-shadow: 0 10px 32px rgba(16, 185, 129, 0.1);
     }
 
     .cert-card:hover::after {
@@ -499,22 +601,22 @@
     }
 
     .cert-header {
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     .cert-issuer {
       font-size: 10px;
-      letter-spacing: 0.15em;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 8px;
-      font-weight: 600;
+      margin-bottom: 7px;
     }
 
     .cert-name {
       font-family: 'Syne', sans-serif;
       font-weight: 700;
-      font-size: 15px;
+      font-size: 14px;
       line-height: 1.4;
       color: var(--text);
     }
@@ -529,41 +631,47 @@
 
     .cert-date {
       font-size: 11px;
+      font-weight: 500;
       color: var(--muted);
-      font-family: 'DM Mono', monospace;
     }
 
     .cert-btn {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 12px;
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      font-size: 10px;
-      font-weight: 500;
-      color: var(--text);
+      padding: 7px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 30px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-2);
       text-decoration: none;
-      background: rgba(255, 255, 255, 0.02);
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 2px 8px rgba(31, 41, 55, 0.04);
+      letter-spacing: 0.02em;
       z-index: 2;
+      cursor: pointer;
     }
 
     .cert-btn:hover {
-      background: rgba(127, 255, 178, 0.1);
+      background: var(--accent);
       border-color: var(--accent);
-      color: var(--accent);
-      transform: translateY(-1px);
+      color: #FFFFFF;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.25);
     }
 
     .cert-btn svg {
-      transition: transform 0.2s ease;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .cert-btn:hover svg {
-      transform: translate(1px, -1px);
+      transform: translate(2px, -2px);
+      stroke: #FFFFFF;
+    }
     }
 
     /* SKILLS */
@@ -574,11 +682,10 @@
 
     .skill-row {
       display: grid;
-      grid-template-columns: 240px 1fr;
+      grid-template-columns: 230px 1fr;
       gap: 40px;
       padding: 32px 0;
       border-top: 1px solid var(--border);
-      transition: all 0.2s ease;
     }
 
     .skill-row:last-child {
@@ -595,137 +702,133 @@
     .skill-row-title {
       font-family: 'Syne', sans-serif;
       font-weight: 700;
-      font-size: 18px;
-      color: var(--accent);
+      font-size: 17px;
+      color: var(--text);
       letter-spacing: -0.01em;
     }
 
     .skill-row-desc {
-      color: var(--muted);
+      color: var(--text-2);
       line-height: 1.7;
-      margin-bottom: 16px;
-      font-size: 13px;
-    }
-
-    .skill-lang {
-      font-family: 'Syne', sans-serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.01em;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .skill-lang-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 8px var(--accent);
-    }
-
-    .skill-desc {
-      font-family: 'DM Mono', monospace;
-      font-size: 12px;
-      color: var(--muted);
-      line-height: 1.6;
+      margin-bottom: 14px;
+      font-size: 14px;
     }
 
     .skill-pill {
       align-self: flex-start;
       font-size: 10px;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: var(--accent);
-      background: rgba(127, 255, 178, 0.04);
+      background: rgba(192, 86, 33, 0.08);
       padding: 4px 10px;
-      border-radius: 2px;
-      border: 1px solid rgba(127, 255, 178, 0.1);
+      border-radius: 100px;
+      border: 1px solid rgba(192, 86, 33, 0.18);
     }
 
     .skill-list {
       list-style: none;
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
     }
 
     .skill-item {
-      font-family: 'DM Mono', monospace;
-      font-size: 11px;
-      padding: 6px 12px;
-      background: rgba(255, 255, 255, 0.02);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 2px;
-      color: var(--text);
+      border-radius: 100px;
+      color: var(--text-2);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
       cursor: default;
+      transition: all 0.2s;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .skill-item:hover {
+      border-color: rgba(16, 185, 129, 0.3);
+      background: rgba(16, 185, 129, 0.05);
+      color: var(--accent);
     }
 
     .skill-dot {
       width: 5px;
       height: 5px;
       border-radius: 50%;
-      background: var(--accent2);
+      background: var(--accent);
       display: inline-block;
+      opacity: 0.5;
     }
 
-    /* CONTACT */
+    /* CONTACT — inverted dark panel */
     .contact-inner {
-      background: var(--card);
-      border: 1px solid var(--border);
+      background: var(--text);
       padding: 64px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 64px;
       align-items: center;
+      border-radius: 20px;
     }
 
     .contact-heading {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
-      font-size: clamp(32px, 4vw, 56px);
-      line-height: 1;
-      letter-spacing: -0.02em;
+      font-size: clamp(32px, 4vw, 52px);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      color: var(--bg);
     }
 
     .contact-heading em {
       font-family: 'Instrument Serif', serif;
       font-style: italic;
-      color: var(--accent);
       font-weight: 400;
+      color: #34D399;
+    }
+
+    .contact-subtext {
+      color: rgba(247, 244, 239, 0.6);
+      margin-top: 20px;
+      font-size: 15px;
+      line-height: 1.7;
     }
 
     .contact-links {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 12px;
     }
 
     .contact-link {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 20px;
-      border: 1px solid var(--border);
-      color: var(--text);
+      padding: 16px 22px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(247, 244, 239, 0.85);
       text-decoration: none;
-      font-size: 13px;
-      transition: all 0.2s;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .contact-link:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      padding-left: 28px;
+      border-color: rgba(255, 255, 255, 0.25);
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      padding-left: 30px;
     }
 
     .contact-link-arrow {
-      color: var(--muted);
+      color: rgba(247, 244, 239, 0.4);
     }
 
     /* FOOTER */
@@ -733,10 +836,9 @@
       position: relative;
       z-index: 1;
       text-align: center;
-      padding: 32px 48px;
+      padding: 28px 48px;
       border-top: 1px solid var(--border);
-      font-size: 11px;
-      letter-spacing: 0.1em;
+      font-size: 13px;
       color: var(--muted);
     }
 
@@ -753,7 +855,7 @@
     @keyframes fadeUp {
       from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(24px);
       }
 
       to {
@@ -784,6 +886,125 @@
       animation-fill-mode: forwards;
     }
 
+    /* MODAL FOR CERTIFICATE VIEWER */
+    .cert-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(31, 41, 55, 0.15);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 24px;
+    }
+
+    .cert-modal.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cert-modal-content {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(30px) saturate(180%);
+      -webkit-backdrop-filter: blur(30px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      border-radius: 24px;
+      max-width: 900px;
+      width: 100%;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 30px 60px rgba(31, 41, 55, 0.12), 0 1px 0 rgba(255, 255, 255, 0.3) inset;
+      transform: scale(0.95) translateY(10px);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    .cert-modal.active .cert-modal-content {
+      transform: scale(1) translateY(0);
+    }
+
+    .cert-modal-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(31, 41, 55, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cert-modal-title h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .cert-modal-title p {
+      font-size: 12px;
+      color: var(--text-2);
+      margin-top: 2px;
+      opacity: 0.8;
+    }
+
+    .cert-modal-close {
+      background: rgba(255, 255, 255, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+
+    .cert-modal-close:hover {
+      background: rgba(255, 255, 255, 0.7);
+      border-color: rgba(255, 255, 255, 0.8);
+      transform: scale(1.05);
+    }
+
+    .cert-modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(243, 244, 246, 0.3);
+      min-height: 350px;
+    }
+
+    .cert-preview-img {
+      max-width: 100%;
+      max-height: 60vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    .cert-preview-iframe {
+      width: 100%;
+      height: 60vh;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 12px;
+    }
+
+    .cert-modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid rgba(31, 41, 55, 0.08);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
     /* MOBILE */
     @media (max-width: 768px) {
       nav {
@@ -799,8 +1020,25 @@
         padding: 80px 24px 48px;
       }
 
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding-top: 100px;
+        min-height: auto;
+      }
+
+      .hero-pfp-container {
+        order: -1;
+        margin-bottom: 20px;
+      }
+
+      .pfp-wrapper {
+        width: 200px;
+        height: 200px;
+      }
+
       .hero h1 {
-        font-size: 42px;
+        font-size: 44px;
       }
 
       .about-grid {
@@ -832,6 +1070,44 @@
         padding: 32px;
         gap: 32px;
       }
+
+      /* Responsive updates for mobile */
+      nav {
+        top: 8px;
+        left: 8px;
+        right: 8px;
+        padding: 10px 20px;
+        justify-content: center;
+      }
+
+      .cert-card {
+        min-height: auto;
+      }
+
+      .cert-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .cert-modal-content {
+        max-height: 90vh;
+        width: 100%;
+        border-radius: 16px;
+      }
+
+      .cert-modal-body {
+        padding: 12px;
+        min-height: 250px;
+      }
+
+      .cert-preview-img {
+        max-height: 50vh;
+      }
+
+      .cert-preview-iframe {
+        height: 50vh;
+      }
     }
   </style>
 </head>
@@ -839,7 +1115,7 @@
 <body>
 
   <nav>
-    <a href="#" class="nav-logo">AKCS</a>
+    <a href="#" class="nav-logo">AK<span>CS</span></a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
@@ -852,15 +1128,23 @@
   <!-- HERO -->
   <div style="position:relative;z-index:1;">
     <div class="hero">
-      <div class="hero-tag">Available for opportunities</div>
-      <h1>Abhinav<br>Krishna <em>C S</em></h1>
-      <p class="hero-desc">
-        CS undergrad at SNGCE · Ernakulam, Kerala.<br>
-        Building at the intersection of AI, full-stack dev, and real-world systems. Coding my way to a future in tech.
-      </p>
-      <div class="hero-scroll">
-        <div class="scroll-line"></div>
-        Scroll to explore
+      <div class="hero-content">
+        <div class="hero-tag"><span class="hero-tag-dot"></span>Available for opportunities</div>
+        <h1>Abhinav<br>Krishna C S</h1>
+        <p class="hero-desc">
+          CS undergrad at SNGCE · Ernakulam, Kerala.<br>
+          Building at the intersection of AI, full-stack dev, and real-world systems. Coding my way to a future in tech.
+        </p>
+        <div class="hero-scroll">
+          <div class="scroll-line"></div>
+          Scroll to explore
+        </div>
+      </div>
+      <div class="hero-pfp-container">
+        <div class="pfp-wrapper">
+          <div class="pfp-ring"></div>
+          <img src="images/pfp.png" alt="Abhinav Krishna C S" class="pfp-image">
+        </div>
       </div>
     </div>
 
@@ -870,7 +1154,7 @@
       <h2 class="section-title">About Me</h2>
       <div class="about-grid">
         <div class="about-text">
-          <p>I'm <span>Abhinav Krishna C S</span>, a B.Tech Computer Science & Engineering student at Sree Narayana
+          <p>I'm <span>Abhinav Krishna CS</span>, a B.Tech Computer Science & Engineering student at Sree Narayana
             Gurukulam College of Engineering, affiliated with APJ Abdul Kalam Technological University.</p>
           <p>I have a strong interest in <span>exploring different programming languages and technologies</span>. I
             believe technology can solve real-world problems & I'm eager to gain experience working with others in
@@ -933,10 +1217,14 @@
           <div class="project-header">
             <div class="project-title">AlumniNet</div>
             <div class="project-link-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                </path>
               </svg>
-              <svg class="external-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="external-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="7" y1="17" x2="17" y2="7"></line>
                 <polyline points="7 7 17 7 17 17"></polyline>
               </svg>
@@ -959,10 +1247,14 @@
           <div class="project-header">
             <div class="project-title">Smart EV Charging Station Recommendation System</div>
             <div class="project-link-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                </path>
               </svg>
-              <svg class="external-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="external-arrow" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="7" y1="17" x2="17" y2="7"></line>
                 <polyline points="7 7 17 7 17 17"></polyline>
               </svg>
@@ -991,172 +1283,172 @@
       <h2 class="section-title">Certifications</h2>
       <div class="certs-grid">
 
-        <div class="cert-card">
+        <div class="cert-card" style="cursor: pointer;"
+          onclick="openCert('YUVA AI For All', 'TCS iON', 'Certificates/Yuva-AI.jpg')">
           <div class="cert-header">
             <div class="cert-issuer">TCS iON</div>
             <div class="cert-name">YUVA AI For All</div>
           </div>
           <div class="cert-footer">
             <div class="cert-date">Jun 2026</div>
-            <a href="https://g09.tcsion.com//LX/ecertificate/verification?id=09389623-6101-73161-0" target="_blank" class="cert-btn">
-              Show credential
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-              </svg>
-            </a>
+            <div style="display: flex; gap: 8px; align-items: center; z-index: 5;">
+              <button class="cert-btn" style="pointer-events: none;">View</button>
+              <a href="https://g09.tcsion.com//LX/ecertificate/verification?id=09389623-6101-73161-0" target="_blank"
+                class="cert-btn" onclick="event.stopPropagation()" style="text-transform: uppercase;">Verify ↗</a>
+            </div>
           </div>
         </div>
 
-        <div class="cert-card">
+        <div class="cert-card" style="cursor: pointer;"
+          onclick="openCert('SQL (Intermediate)', 'HackerRank', 'Certificates/SQL-Intermediate.jpg')">
           <div class="cert-header">
             <div class="cert-issuer">HackerRank</div>
             <div class="cert-name">SQL (Intermediate)</div>
           </div>
           <div class="cert-footer">
             <div class="cert-date">May 2026</div>
-            <a href="https://www.hackerrank.com/certificates/iframe/1d916b29b730" target="_blank" class="cert-btn">
-              Show credential
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-              </svg>
-            </a>
+            <div style="display: flex; gap: 8px; align-items: center; z-index: 5;">
+              <button class="cert-btn" style="pointer-events: none;">View</button>
+              <a href="https://www.hackerrank.com/certificates/iframe/1d916b29b730" target="_blank" class="cert-btn"
+                onclick="event.stopPropagation()" style="text-transform: uppercase;">Verify ↗</a>
+            </div>
           </div>
         </div>
 
-
-        <div class="cert-card">
+        <div class="cert-card" style="cursor: pointer;"
+          onclick="openCert('Fundamentals of AI', 'Cognitive Class', 'Certificates/Fundamentals-of-AI.jpg')">
           <div class="cert-header">
             <div class="cert-issuer">Cognitive Class</div>
             <div class="cert-name">Fundamentals of AI</div>
           </div>
           <div class="cert-footer">
             <div class="cert-date">May 2026</div>
-            <a href="https://cognitiveclass.ai/certificates/bd7680ff-4c88-4ac0-82b9-28bb918dc387" target="_blank"
-              class="cert-btn">
-              Show credential
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-              </svg>
-            </a>
+            <div style="display: flex; gap: 8px; align-items: center; z-index: 5;">
+              <button class="cert-btn" style="pointer-events: none;">View</button>
+              <a href="https://cognitiveclass.ai/certificates/bd7680ff-4c88-4ac0-82b9-28bb918dc387" target="_blank"
+                class="cert-btn" onclick="event.stopPropagation()" style="text-transform: uppercase;">Verify ↗</a>
+            </div>
           </div>
         </div>
 
-        <div class="cert-card">
+        <div class="cert-card" style="cursor: pointer;"
+          onclick="openCert('Introduction to Large Language Models', 'Google', 'Certificates/Intro-to-LLMs.jpg')">
           <div class="cert-header">
             <div class="cert-issuer">Google</div>
             <div class="cert-name">Introduction to Large Language Models</div>
           </div>
           <div class="cert-footer">
             <div class="cert-date">Feb 2026</div>
-            <a href="https://www.skills.google/public_profiles/4c41a977-610a-4640-863b-c249b9065690/badges/22663469?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
-              target="_blank" class="cert-btn">
-              Show credential
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-              </svg>
-            </a>
+            <div style="display: flex; gap: 8px; align-items: center; z-index: 5;">
+              <a href="https://www.skills.google/public_profiles/4c41a977-610a-4640-863b-c249b9065690/badges/22663469?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
+                target="_blank" class="cert-btn" onclick="event.stopPropagation()"
+                style="text-transform: uppercase;">Verify ↗</a>
+            </div>
           </div>
         </div>
 
-        <div class="cert-card">
+        <div class="cert-card" style="cursor: pointer;"
+          onclick="openCert('Introduction to Generative AI', 'Google', 'Certificates/Intro-to-GenAI.jpg')">
           <div class="cert-header">
             <div class="cert-issuer">Google</div>
             <div class="cert-name">Introduction to Generative AI</div>
           </div>
           <div class="cert-footer">
             <div class="cert-date">Feb 2026</div>
-            <a href="https://www.skills.google/public_profiles/4c41a977-610a-4640-863b-c249b9065690/badges/22644697?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
-              target="_blank" class="cert-btn">
-              Show credential
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                <polyline points="15 3 21 3 21 9"></polyline>
-                <line x1="10" y1="14" x2="21" y2="3"></line>
-              </svg>
-            </a>
+            <div style="display: flex; gap: 8px; align-items: center; z-index: 5;">
+              <a href="https://www.skills.google/public_profiles/4c41a977-610a-4640-863b-c249b9065690/badges/22644697?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
+                target="_blank" class="cert-btn" onclick="event.stopPropagation()"
+                style="text-transform: uppercase;">Verify ↗</a>
+            </div>
           </div>
         </div>
 
-        <div class="cert-card">
+        <div class="cert-card" style="cursor: pointer;"
+          onclick="openCert('Microsoft Learn AI Fundamentals', 'MuLearn SNGCE', 'Certificates/Year-end-with-AI.jpg')">
           <div class="cert-header">
             <div class="cert-issuer">MuLearn SNGCE</div>
             <div class="cert-name">Year End With AI — Microsoft Learn AI Fundamentals</div>
           </div>
           <div class="cert-footer">
             <div class="cert-date">Dec 2025</div>
+            <div style="display: flex; gap: 8px; align-items: center; z-index: 5;">
+              <button class="cert-btn" style="pointer-events: none;">View</button>
+              <a href="https://www.skills.google/public_profiles/4c41a977-610a-4640-863b-c249b9065690/badges/22644697?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
+                target="_blank" class="cert-btn" onclick="event.stopPropagation()"
+                style="text-transform: uppercase;">Verify ↗</a>
+            </div>
           </div>
         </div>
 
-        <div class="cert-card">
+        <div class="cert-card" style="cursor: pointer;"
+          onclick="openCert('UI/UX Workshop', 'MuLearn SNGCE', 'Certificates/UI-UX-Workshop.jpg')">
           <div class="cert-header">
             <div class="cert-issuer">MuLearn SNGCE</div>
             <div class="cert-name">UI/UX Workshop — User Interface Design & UX</div>
           </div>
           <div class="cert-footer">
             <div class="cert-date">Sep 2025</div>
+            <button class="cert-btn">View Certificate</button>
           </div>
         </div>
 
-        <div class="cert-card">
+        <div class="cert-card" style="cursor: pointer;"
+          onclick="openCert('Azure Fundamentals and AWS Overview', 'SNGCE', 'Certificates/Azure-AWS-Fundamentals.jpg')">
           <div class="cert-header">
             <div class="cert-issuer">SNGCE</div>
             <div class="cert-name">Azure Fundamentals and AWS Overview</div>
           </div>
           <div class="cert-footer">
             <div class="cert-date">Jun 2025</div>
+            <button class="cert-btn">View Certificate</button>
           </div>
         </div>
 
-        <div class="cert-card">
+        <div class="cert-card" style="cursor: pointer;"
+          onclick="openCert('AI / Machine Learning Training Program', 'IEEE', 'Certificates/AI-ML-Training.png')">
           <div class="cert-header">
             <div class="cert-issuer">IEEE</div>
             <div class="cert-name">AI / Machine Learning Training Program</div>
           </div>
           <div class="cert-footer">
             <div class="cert-date">Jan 2025</div>
+            <button class="cert-btn">View Certificate</button>
           </div>
         </div>
 
-        <div class="cert-card">
+        <div class="cert-card" style="cursor: pointer;"
+          onclick="openCert('IDE Bootcamp Phase-III', 'MoE, Govt. of India', 'Certificates/IDE-Bootcamp.png')">
           <div class="cert-header">
             <div class="cert-issuer">Ministry of Education, Govt. of India</div>
             <div class="cert-name">IDE Bootcamp Phase-III — Entrepreneurship & Design Thinking</div>
           </div>
           <div class="cert-footer">
             <div class="cert-date">May 2024</div>
+            <button class="cert-btn">View Certificate</button>
           </div>
         </div>
 
-        <div class="cert-card">
+        <div class="cert-card" style="cursor: pointer;"
+          onclick="openCert('Flutter Workshop', 'SNGCE', 'Certificates/Flutter-Workshop.png')">
           <div class="cert-header">
             <div class="cert-issuer">SNGCE</div>
             <div class="cert-name">Flutter Workshop</div>
           </div>
           <div class="cert-footer">
             <div class="cert-date">Dec 2023</div>
+            <button class="cert-btn">View Certificate</button>
           </div>
         </div>
 
-        <div class="cert-card">
+        <div class="cert-card" style="cursor: pointer;"
+          onclick="openCert('Cyber Security Intern', 'Facein', 'Certificates/Cyber-Security-Internship.jpg')">
           <div class="cert-header">
-            <div class="cert-issuer">TECHMAGHI</div>
+            <div class="cert-issuer">Facein</div>
             <div class="cert-name">Cyber Security and Ethical Hacking</div>
           </div>
           <div class="cert-footer">
             <div class="cert-date">Nov 2023</div>
+            <button class="cert-btn">View Certificate</button>
           </div>
         </div>
 
@@ -1273,9 +1565,9 @@
       <div
         style="margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px;">
         <div class="skill-group"
-          style="padding: 28px; background: var(--card); border: 1px solid var(--border); border-radius: 4px; grid-column: 1 / -1;">
+          style="padding: 28px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; grid-column: 1 / -1; box-shadow: 0 1px 3px rgba(0,0,0,0.04);">
           <h3
-            style="font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px;">
+            style="font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px;">
             Concepts & Fundamentals</h3>
           <div class="skill-list">
             <span class="skill-item"><span class="skill-dot"></span>Object-Oriented Programming (OOP)</span>
@@ -1298,11 +1590,11 @@
       <div class="contact-inner">
         <div>
           <h2 class="contact-heading">Let's build<br>something <em>great.</em></h2>
-          <p style="color:var(--muted);margin-top:24px;font-size:13px;">Open to internships, collaborations, and
-            interesting projects. Based in Ernakulam, Kerala.</p>
+          <p class="contact-subtext">Open to internships, collaborations, and interesting projects. Based in Ernakulam,
+            Kerala.</p>
         </div>
         <div class="contact-links">
-          <a href="https://www.linkedin.com/in/abhinav-krishna-c-s-820717291" target="_blank" class="contact-link">
+          <a href="https://www.linkedin.com/in/abhinav-krishna-c-s007/" target="_blank" class="contact-link">
             LinkedIn
             <span class="contact-link-arrow">↗</span>
           </a>
@@ -1321,9 +1613,78 @@
 
   </div>
 
+  <!-- CERTIFICATE MODAL HTML -->
+  <div id="certModal" class="cert-modal" onclick="closeCertModal(event)">
+    <div class="cert-modal-content" onclick="event.stopPropagation()">
+      <div class="cert-modal-header">
+        <div class="cert-modal-title">
+          <h3 id="modalTitle">Certificate</h3>
+          <p id="modalIssuer">Issuer</p>
+        </div>
+        <button class="cert-modal-close" onclick="closeCertModal(event)">✕</button>
+      </div>
+      <div class="cert-modal-body" id="modalBody">
+        <!-- Content gets injected dynamically (img or iframe) -->
+      </div>
+      <div class="cert-modal-footer">
+        <a id="modalDownload" href="#" download class="btn btn-outline"
+          style="padding: 10px 20px; font-size: 12px;">Download</a>
+        <button class="btn btn-primary" style="padding: 10px 20px; font-size: 12px;"
+          onclick="closeCertModal(event)">Close</button>
+      </div>
+    </div>
+  </div>
+
   <footer>
-    <p>© Abhinav Krishna C S · Designed & built with intent.</p>
+    <p>© Abhinav Krishna CS · Designed & built with intent.</p>
   </footer>
+
+  <script>
+    function openCert(name, issuer, filePath) {
+      const modal = document.getElementById('certModal');
+      const title = document.getElementById('modalTitle');
+      const issuerEl = document.getElementById('modalIssuer');
+      const body = document.getElementById('modalBody');
+      const downloadBtn = document.getElementById('modalDownload');
+
+      title.textContent = name;
+      issuerEl.textContent = issuer;
+      downloadBtn.href = filePath;
+
+      body.innerHTML = '';
+
+      const fileExt = filePath.split('.').pop().toLowerCase();
+
+      if (fileExt === 'pdf') {
+        const iframe = document.createElement('iframe');
+        iframe.src = filePath;
+        iframe.className = 'cert-preview-iframe';
+        body.appendChild(iframe);
+      } else {
+        const img = document.createElement('img');
+        img.src = filePath;
+        img.className = 'cert-preview-img';
+        img.alt = name;
+        body.appendChild(img);
+      }
+
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCertModal(e) {
+      const modal = document.getElementById('certModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Close on escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        closeCertModal();
+      }
+    });
+  </script>
 
 </body>
 
