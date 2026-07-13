@@ -110,6 +110,11 @@
       color: var(--text);
     }
 
+    .nav-links a.active {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
     /* HERO */
     .hero {
       position: relative;
@@ -1008,11 +1013,75 @@
     /* MOBILE */
     @media (max-width: 768px) {
       nav {
-        padding: 16px 24px;
+        padding: 0;
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+
+      .nav-logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.15) 49.5%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.15) 100%);
+        backdrop-filter: blur(20px) saturate(190%);
+        -webkit-backdrop-filter: blur(20px) saturate(190%);
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        padding: 8px 24px;
+        border-radius: 100px;
+        box-shadow: 0 10px 30px rgba(31, 41, 55, 0.03);
+        width: calc(100% - 32px);
+        max-width: 420px;
+        box-sizing: border-box;
       }
 
       .nav-links {
+        display: flex;
+        gap: 4px;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.15) 49.5%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.15) 100%);
+        backdrop-filter: blur(20px) saturate(190%);
+        -webkit-backdrop-filter: blur(20px) saturate(190%);
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        padding: 6px 16px;
+        border-radius: 100px;
+        box-shadow: 0 10px 30px rgba(31, 41, 55, 0.03);
+        width: calc(100% - 32px);
+        max-width: 420px;
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+        outline: none;
+      }
+
+      .nav-links::-webkit-scrollbar {
         display: none;
+      }
+
+      .nav-links a {
+        font-size: 11px;
+        padding: 6px 10px;
+        color: var(--text-2);
+        transition: all 0.2s ease;
+        border-radius: 100px;
+        -webkit-tap-highlight-color: transparent;
+        outline: none;
+      }
+
+      .nav-links a:hover,
+      .nav-links a:active,
+      .nav-links a.active {
+        color: var(--accent);
+        background: rgba(16, 185, 129, 0.08);
       }
 
       .hero,
@@ -1020,10 +1089,14 @@
         padding: 80px 24px 48px;
       }
 
+      section {
+        scroll-margin-top: 120px;
+      }
+
       .hero {
         grid-template-columns: 1fr;
         gap: 40px;
-        padding-top: 100px;
+        padding-top: 160px;
         min-height: auto;
       }
 
@@ -1086,8 +1159,6 @@
         top: 8px;
         left: 8px;
         right: 8px;
-        padding: 10px 20px;
-        justify-content: center;
       }
 
       .cert-card {
@@ -1716,6 +1787,33 @@
         closeCertModal();
       }
     });
+
+    // Scroll Spy: Highlight active section in navigation
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    function updateActiveLink() {
+      let current = '';
+      const scrollPos = window.scrollY || document.documentElement.scrollTop;
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (scrollPos >= sectionTop - 180) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href').substring(1);
+        if (href === current) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveLink);
+    window.addEventListener('load', updateActiveLink);
   </script>
 
 </body>
