@@ -1443,8 +1443,7 @@
           </div>
         </div>
 
-        <div class="cert-card" style="cursor: pointer;"
-          onclick="openCert('Introduction to Large Language Models', 'Google', 'certificates/Intro-to-LLMs.jpg')">
+        <div class="cert-card" style="cursor: default;">
           <div class="cert-header">
             <div class="cert-issuer">Google</div>
             <div class="cert-name">Introduction to Large Language Models</div>
@@ -1459,8 +1458,7 @@
           </div>
         </div>
 
-        <div class="cert-card" style="cursor: pointer;"
-          onclick="openCert('Introduction to Generative AI', 'Google', 'certificates/Intro-to-GenAI.jpg')">
+        <div class="cert-card" style="cursor: default;">
           <div class="cert-header">
             <div class="cert-issuer">Google</div>
             <div class="cert-name">Introduction to Generative AI</div>
@@ -1751,7 +1749,7 @@
     <p>© Abhinav Krishna CS · Designed & built with intent.</p>
   </footer>
 
-  <script src="liquid-glass.js"></script>
+  <script src="ui-core.js"></script>
   <script>
     function openCert(name, issuer, filePath) {
       const modal = document.getElementById('certModal');

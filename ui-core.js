@@ -1,18 +1,3 @@
-/*!
- * liquid-glass.js — Apple-style liquid glass refraction for any element.
- *
- * Usage:
- *   <script src="liquid-glass.js"></script>
- *   const glass = liquidGlass(document.querySelector('.my-card'), { scale: -112 });
- *
- * The module owns the SVG filter, displacement map, backdrop-filter wiring,
- * resize handling, and the frosted-blur fallback for browsers that can't do
- * SVG-filtered backdrops (Safari, Firefox). Visual dressing (tint, inner
- * highlight, glare, shadows) stays in your CSS — see GLASS.md for the recipe.
- *
- * Technique per https://aave.com/design/building-glass-for-the-web and
- * https://github.com/rizroze/liquid-glass
- */
 (function (global) {
   "use strict";
 
@@ -82,7 +67,7 @@
     ctx.fillStyle = "rgba(128,128,128,0.93)";
     ctx.beginPath();
     ctx.roundRect(inset, inset, w - inset * 2, h - inset * 2,
-                  Math.max(radius - inset, 2));
+      Math.max(radius - inset, 2));
     ctx.fill();
     ctx.filter = "none";
     return canvas.toDataURL();
@@ -173,8 +158,10 @@
    */
   function liquidGlass(el, opts) {
     const o = Object.assign(
-      { scale: -112, chroma: 6, border: 0.07, mapBlur: 12,
-        blur: 3, saturate: 1.5, radius: null, fallbackBlur: 16 },
+      {
+        scale: -112, chroma: 6, border: 0.07, mapBlur: 12,
+        blur: 3, saturate: 1.5, radius: null, fallbackBlur: 16
+      },
       opts
     );
 
@@ -183,11 +170,13 @@
       el.style.backdropFilter = frosted;
       el.style.webkitBackdropFilter = frosted;
       el.classList.add("lg-fallback");
-      return { supported: false, refresh: function () {}, destroy: function () {
-        el.style.backdropFilter = "";
-        el.style.webkitBackdropFilter = "";
-        el.classList.remove("lg-fallback");
-      } };
+      return {
+        supported: false, refresh: function () { }, destroy: function () {
+          el.style.backdropFilter = "";
+          el.style.webkitBackdropFilter = "";
+          el.classList.remove("lg-fallback");
+        }
+      };
     }
 
     const id = "lg-filter-" + (++uid);
@@ -229,3 +218,20 @@
 
   global.liquidGlass = liquidGlass;
 })(window);
+
+
+/*!
+ * liquid-glass.js — Apple-style liquid glass refraction for any element.
+ *
+ * Usage:
+ *   <script src="liquid-glass.js"></script>
+ *   const glass = liquidGlass(document.querySelector('.my-card'), { scale: -112 });
+ *
+ * The module owns the SVG filter, displacement map, backdrop-filter wiring,
+ * resize handling, and the frosted-blur fallback for browsers that can't do
+ * SVG-filtered backdrops (Safari, Firefox). Visual dressing (tint, inner
+ * highlight, glare, shadows) stays in your CSS — see GLASS.md for the recipe.
+ *
+ * Technique per https://aave.com/design/building-glass-for-the-web and
+ * https://github.com/rizroze/liquid-glass
+ */
