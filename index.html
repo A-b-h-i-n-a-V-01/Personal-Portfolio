@@ -1342,36 +1342,43 @@
         box-shadow: 0 10px 30px rgba(31, 41, 55, 0.03);
         width: calc(100% - 32px);
         max-width: 420px;
+        margin: 0 auto;
         box-sizing: border-box;
       }
 
       .nav-links {
-        display: flex;
-        gap: 4px;
-        justify-content: flex-start;
-        align-items: center;
+        display: flex !important;
+        gap: 0 !important;
+        justify-content: space-evenly !important;
+        align-items: center !important;
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.15) 49.5%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.15) 100%);
         backdrop-filter: blur(20px) saturate(190%);
         -webkit-backdrop-filter: blur(20px) saturate(190%);
         border: 1px solid rgba(255, 255, 255, 0.45);
-        padding: 6px 12px;
+        padding: 4px 8px !important;
         border-radius: 100px;
         box-shadow: 0 10px 30px rgba(31, 41, 55, 0.03);
         width: calc(100% - 32px);
         max-width: 420px;
-        overflow-x: auto;
-        white-space: nowrap;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
+        margin: 0 auto !important;
+        overflow: hidden;
         box-sizing: border-box;
         -webkit-tap-highlight-color: transparent;
         outline: none;
+        list-style: none !important;
       }
 
       .nav-links li {
         list-style: none;
-        display: inline-flex;
+        flex: 1 1 0%;
+        display: flex;
+        justify-content: center;
         align-items: center;
+        height: 100%;
+      }
+
+      .nav-contact {
+        display: none;
       }
 
       .nav-links::-webkit-scrollbar {
@@ -1379,20 +1386,29 @@
       }
 
       .nav-links a {
-        font-size: 11px;
-        padding: 6px 10px;
+        font-size: 10.5px;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        padding: 7px 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
         color: var(--text-2);
         transition: all 0.2s ease;
         border-radius: 100px;
         -webkit-tap-highlight-color: transparent;
         outline: none;
+        white-space: nowrap;
       }
 
       .nav-links a:hover,
       .nav-links a:active,
       .nav-links a.active {
         color: var(--accent);
-        background: rgba(16, 185, 129, 0.08);
+        background: rgba(16, 185, 129, 0.12);
+        font-weight: 600;
       }
 
       .theme-toggle {
@@ -1549,7 +1565,7 @@
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#certifications">Certs</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li class="nav-contact"><a href="#contact">Contact</a></li>
     </ul>
     <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
       <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
