@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Abhinav Krishna C S — Portfolio</title>
   <script>
     (function () {
@@ -42,6 +42,17 @@
       --card-hover: #F9FAFB;
       --tag-bg: #F3F4F6;
       --bg-gradient: radial-gradient(circle at 10% 20%, #F9FAFB 0%, #F3F4F6 90%);
+
+      /* Layout Rhythm & Density Scale */
+      --p-density: 1;
+      --p-scale: 1;
+      --space-xs: calc(4px * var(--p-density));
+      --space-sm: calc(8px * var(--p-density));
+      --space-md: calc(16px * var(--p-density));
+      --space-lg: calc(24px * var(--p-density));
+      --space-xl: calc(32px * var(--p-density));
+      --space-2xl: calc(48px * var(--p-density));
+      --space-section: calc(96px * var(--p-density));
     }
 
     html.dark {
@@ -226,11 +237,21 @@
       background: var(--bg);
       background-image: var(--bg-gradient);
       color: var(--text);
-      font-family: 'Inter', sans-serif;
-      font-size: 15px;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: calc(15px * var(--p-scale));
       line-height: 1.7;
       overflow-x: hidden;
       position: relative;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html.dark body {
+      letter-spacing: 0.01em;
+    }
+
+    .tabular-nums, .cert-date, .exp-date, .project-num {
+      font-variant-numeric: tabular-nums;
     }
 
     body::before {
@@ -531,9 +552,11 @@
     section {
       position: relative;
       z-index: 1;
-      padding: 80px 48px;
+      padding: var(--space-section) var(--space-2xl);
       max-width: 1200px;
       margin: 0 auto;
+      content-visibility: auto;
+      contain-intrinsic-size: 1px 600px;
     }
 
     .section-label {
@@ -796,8 +819,8 @@
     /* CERTS */
     .certs-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-md);
     }
 
     .cert-card {
@@ -1124,6 +1147,55 @@
       animation-fill-mode: forwards;
     }
 
+    /* SCROLL REVEALS & MOTION THESIS */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity;
+    }
+    
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .stagger-children > * {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity;
+    }
+    
+    .stagger-children.active > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .stagger-children.active > *:nth-child(1) { transition-delay: 0.1s; }
+    .stagger-children.active > *:nth-child(2) { transition-delay: 0.2s; }
+    .stagger-children.active > *:nth-child(3) { transition-delay: 0.3s; }
+    .stagger-children.active > *:nth-child(4) { transition-delay: 0.4s; }
+    .stagger-children.active > *:nth-child(5) { transition-delay: 0.5s; }
+    .stagger-children.active > *:nth-child(6) { transition-delay: 0.6s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal,
+      .stagger-children > *,
+      .hero-tag,
+      .hero h1,
+      .hero-desc,
+      .hero-cta,
+      .pfp-ring,
+      .project-card,
+      .project-image {
+        transition: none !important;
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
     /* MODAL FOR CERTIFICATE VIEWER */
     .cert-modal {
       position: fixed;
@@ -1325,8 +1397,8 @@
 
       .theme-toggle {
         position: fixed;
-        bottom: 24px;
-        right: 24px;
+        bottom: max(24px, env(safe-area-inset-bottom));
+        right: max(24px, env(safe-area-inset-right));
         z-index: 1000;
         width: 48px;
         height: 48px;
@@ -1446,6 +1518,25 @@
         height: 50vh;
       }
     }
+
+    /* TOUCH & POINTER ADAPTATIONS */
+    @media (pointer: coarse) {
+      .btn, .cert-btn, .theme-toggle, .contact-link {
+        min-height: 44px;
+        min-width: 44px;
+      }
+
+      .nav-links a {
+        padding: 8px 14px;
+      }
+    }
+
+    /* SAFE AREA INSETS FOR NOTCHED DEVICES */
+    nav {
+      padding-top: max(16px, env(safe-area-inset-top));
+      padding-left: max(24px, env(safe-area-inset-left));
+      padding-right: max(24px, env(safe-area-inset-right));
+    }
   </style>
 </head>
 
@@ -1529,13 +1620,13 @@
       <div class="hero-pfp-container">
         <div class="pfp-wrapper">
           <div class="pfp-ring"></div>
-          <img src="images/pfp.png" alt="Abhinav Krishna C S" class="pfp-image">
+          <img src="images/pfp.png" alt="Abhinav Krishna C S" class="pfp-image" fetchpriority="high" decoding="async">
         </div>
       </div>
     </div>
 
     <!-- ABOUT -->
-    <section id="about">
+    <section id="about" class="reveal">
       <div class="section-label">Who I am</div>
       <h2 class="section-title">About Me</h2>
       <div class="about-grid">
@@ -1553,7 +1644,7 @@
     </section>
 
     <!-- EXPERIENCE -->
-    <section id="experience">
+    <section id="experience" class="reveal">
       <div class="section-label">Where I've worked</div>
       <h2 class="section-title">Experience</h2>
 
@@ -1613,10 +1704,10 @@
     </section>
 
     <!-- PROJECTS -->
-    <section id="projects">
+    <section id="projects" class="reveal">
       <div class="section-label">What I've built</div>
       <h2 class="section-title">Projects</h2>
-      <div class="projects-grid">
+      <div class="projects-grid stagger-children">
 
         <a href="https://github.com/A-b-h-i-n-a-V-01/AlumniNet" target="_blank" class="project-card">
           <div class="project-info">
@@ -1648,7 +1739,7 @@
             </div>
           </div>
           <div class="project-image-wrapper">
-            <img src="images/alumninet-preview.png" class="project-image" alt="AlumniNet Landing Page">
+            <img src="images/alumninet-preview.png" class="project-image" alt="AlumniNet Landing Page" loading="lazy" decoding="async">
           </div>
         </a>
 
@@ -1686,7 +1777,7 @@
             </div>
           </div>
           <div class="project-image-wrapper">
-            <img src="images/chargeiq-preview.png" class="project-image" alt="ChargeIQ EV Recommendation System">
+            <img src="images/chargeiq-preview.png" class="project-image" alt="ChargeIQ EV Recommendation System" loading="lazy" decoding="async">
           </div>
         </a>
 
@@ -1736,10 +1827,10 @@
     </section>
 
     <!-- CERTIFICATIONS -->
-    <section id="certifications">
+    <section id="certifications" class="reveal">
       <div class="section-label">Credentials</div>
       <h2 class="section-title">Certifications</h2>
-      <div class="certs-grid">
+      <div class="certs-grid stagger-children">
 
         <div class="cert-card" style="cursor: pointer;"
           onclick="openCert('YUVA AI For All', 'TCS iON', 'certificates/Yuva-AI.jpg')">
@@ -1912,10 +2003,10 @@
     </section>
 
     <!-- SKILLS -->
-    <section id="skills">
+    <section id="skills" class="reveal">
       <div class="section-label">Technical skills</div>
       <h2 class="section-title">Technical Expertise</h2>
-      <div class="skills-rows">
+      <div class="skills-rows stagger-children">
         <!-- Software Engineering -->
         <div class="skill-row">
           <div class="skill-row-meta">
@@ -2041,7 +2132,7 @@
     </section>
 
     <!-- CONTACT -->
-    <section id="contact">
+    <section id="contact" class="reveal">
       <div class="section-label">Let's connect</div>
       <div class="contact-inner">
         <div>
@@ -2241,6 +2332,26 @@
         }
       });
     }
+
+    // Intersection Observer for scroll reveals
+    document.addEventListener('DOMContentLoaded', () => {
+      const revealElements = document.querySelectorAll('.reveal, .stagger-children');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            // Unobserve once revealed
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px'
+      });
+      
+      revealElements.forEach(el => observer.observe(el));
+    });
   </script>
 
 </body>
