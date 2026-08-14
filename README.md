@@ -1,6 +1,6 @@
 # 🌌 Abhinav Krishna C S — Personal Portfolio
 
-Hi, Welcome to the repository for my personal portfolio website. This is a lightweight, high-performance, developer-centric portfolio designed to showcase my journey as a Computer Science undergrad, full-stack developer, AI/ML engineer, and cybersecurity practitioner.
+Welcome to the repository for my personal portfolio website. This is a lightweight, high-performance, developer-centric portfolio designed to showcase my journey as a Computer Science undergrad, full-stack developer, AI/ML engineer, and cybersecurity practitioner.
 
 🔗 **Live Portfolio:** [https://a-b-h-i-n-a-v-01.github.io/Portfolio/](https://a-b-h-i-n-a-v-01.github.io/Portfolio/)
 
